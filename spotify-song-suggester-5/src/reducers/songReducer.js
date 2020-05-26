@@ -11,12 +11,6 @@ const songReducer = () => (state = initialState, action) => {
     case 'FETCH_SONGS_START':
         return null;
 
-    
-    
-    
-    
-    
-        
         default: return state
     }
     }
