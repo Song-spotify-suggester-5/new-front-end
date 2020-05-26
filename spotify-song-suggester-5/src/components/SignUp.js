@@ -6,7 +6,7 @@ import {Link} from "react-router-dom"
 
 
 export default function SignUp(props) {
-  const { formValues, onInputChange } = props;
+  const { formValues, onInputChange, errors } = props;
 
   return (
       <div>
@@ -18,9 +18,10 @@ export default function SignUp(props) {
         <input
           value={formValues.name}
           onChange={onInputChange}
-          name="email"
+          name="name"
           type="text"
         />
+        <div className="errors">{errors.name}</div>
       </label>
 
       <label>
@@ -31,6 +32,7 @@ export default function SignUp(props) {
           name="email"
           type="text"
         />
+        <div className="errors">{errors.email}</div>
       </label>
 
       <label>
@@ -41,6 +43,7 @@ export default function SignUp(props) {
           name="password"
           type="text"
         />
+        <div className="errors">{errors.password}</div>
       </label>
       <br />
       <button> Sign Up </button>
