@@ -1,20 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import LogIn from './components/LogIn';
+import SignUp from './components/SignUp'; 
+import {Link, Route} from 'react-router-dom'; 
+
+
+const initialFormValues = {
+  name: "",
+  email: "",
+  password: "",
+};
+
+const initialUsers = [];
 
 function App() {
+
+  const [users, setUsers] = useState(initialUsers)
+  const [formValues, setFormValues] = useState(initialFormValues)
+
+  const onInputChange = evt => {
+
+    const name = evt.target.name
+    const value = evt.target.value 
+
+    setFormValues({
+      ...formValues,
+      [name]: value, 
+    })
+
+  }
+
   return (
 
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-            Learn React
-          </a>
-        </header>
+      <div>
+
+        <Route path="/login">
+        <LogIn formValues={formValues} onInputChange={onInputChange} />
+        </Route>
+        
+        <Route path="/signup">
+        <SignUp formValues={formValues} onInputChange={onInputChange}/>
+        </Route> 
+  
       </div>
 
   );
