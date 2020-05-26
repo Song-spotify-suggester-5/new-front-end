@@ -1,5 +1,5 @@
 const initialState = {
-    song: [],
+    songs: [],
     error: "",
     chosen: false,
     favSongs: [],
@@ -8,15 +8,17 @@ const initialState = {
 
 const songReducer = () => (state = initialState, action) => {
     switch (action.type) {
-    
+    case 'FETCH_SONGS_START':
+        return null;
+
     
     
     
     
     
         
-        default:return state
+        default: return state
     }
     }
 
-export const songReducer;
+export default songReducer;
