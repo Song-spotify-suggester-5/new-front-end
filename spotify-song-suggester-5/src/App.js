@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import LogIn from './components/LogIn';
 import SignUp from './components/SignUp'; 
+import NavBar from './components/NavBar';
 import {Route} from 'react-router-dom'; 
 import * as yup from 'yup';
 import formSchema from './formSchema'
@@ -59,6 +60,9 @@ function App() {
 
       <div>
 
+        <Route path='/'>
+        <NavBar /> 
+        </Route>
         <Route path="/login">
         <LogIn formValues={formValues} onInputChange={onInputChange} />
         </Route>
