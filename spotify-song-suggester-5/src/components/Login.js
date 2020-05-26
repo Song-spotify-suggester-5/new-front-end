@@ -1,19 +1,21 @@
 //React 1 guy
 
 import React from "react";
-import {Link} from "react-router-dom"
+import {Link} from "react-router-dom";
+import {FormContainer} from "../styledComponents";
 
 
 export default function LogIn(props) {
   const { formValues, onInputChange } = props;
 
   return (
-    <div>
-    <form>
+    <FormContainer>
+    <div className="formBox">
       <h1> Log In </h1>
+    <form>
 
       <label>
-        <h3>Email</h3>
+        <span> Email: </span>
         <input
           value={formValues.email}
           onChange={onInputChange}
@@ -23,7 +25,7 @@ export default function LogIn(props) {
       </label>
 
       <label>
-        <h3>Password</h3>
+        <span> Password:</span>
         <input
           value={formValues.password}
           onChange={onInputChange}
@@ -35,9 +37,15 @@ export default function LogIn(props) {
       <button> Log In </button>
     </form>
 
+    </div>
+
+    <div className='switch'>
+
     <p>Need to make an account?</p>
     <button> <Link to="/signup">Sign up</Link> </button>
 
     </div>
+
+    </FormContainer>
   );
 }
