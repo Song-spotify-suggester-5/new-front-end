@@ -1,4 +1,4 @@
-import axiosWithAuth from '../utils/axiosWithAuth';
+import axios from 'axios';
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -11,8 +11,8 @@ const SearchBar = () => {
   };
 
   //1. run axios call to get songs
-  axiosWithAuth
-    .get('/v1/search')
+  axios
+    .get('https://api.spotify.com/v1/search')
     .then((res) => console.log({ Search_Res: res }))
     .catch((err) => console.error(err.message));
   //2. filter the songs in the .then to include whats in the song state

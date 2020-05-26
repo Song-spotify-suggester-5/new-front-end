@@ -6,7 +6,7 @@ const axiosWithAuth = () => {
     headers: {
       Authorization: token,
     },
-    baseURL: 'https://api.spotify.com',
+    baseURL: '',
   });
 };
 
