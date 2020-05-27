@@ -69,16 +69,14 @@ function App() {
         <Favorites />
       </Route>
 
-      <Route path="/">
+      <Route path="/login">
+        <NavBar />
         <LogIn formValues={formValues} onInputChange={onInputChange} />
       </Route>
 
       <Route path="/signup">
+        <NavBar />
         <SignUp formValues={formValues} onInputChange={onInputChange} errors={formErrors} />
-      </Route>
-
-      <Route path="/signup">
-        <SignUp formValues={formValues} onInputChange={onInputChange} />
       </Route>
     </div>
   );

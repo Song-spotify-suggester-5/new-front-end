@@ -19,22 +19,26 @@ const SongCard = ({ song }) => {
 
   return (
     <div className="song-card">
-      <p>{id}</p>
-      <h3>{title}</h3>
-      <h5>By: {artist}</h5>
-      <h5>Released: {releaseDate}</h5>
-
-      <div className="heart" onClick={() => addTofavorites()}>
-        <AiOutlineHeart className={`unclicked${clicked === true ? '-hide' : ''}`} />
-        <AiFillHeart className={`clicked${clicked === true && '-heart'}`} />
+      <div className="song-card-info">
+        <p>{id}</p>
+        <h3>{title}</h3>
+        <h5>By: {artist}</h5>
+        <h5>Released: {releaseDate}</h5>
       </div>
 
-      <button className="similar-songs">
-        More Songs Like This{' '}
-        <span role="img" aria-label="emoji">
-          🔎
-        </span>
-      </button>
+      <div className="song-card-features">
+        <div className="heart" onClick={() => addTofavorites()}>
+          <AiOutlineHeart className={`unclicked${clicked === true ? '-hide' : ''}`} />
+          <AiFillHeart className={`clicked${clicked === true && '-heart'}`} />
+        </div>
+
+        <button className="similar-songs">
+         More of this
+          <span role="img" aria-label="emoji">
+             🔎
+          </span>
+        </button>
+      </div>
     </div>
   );
 };
