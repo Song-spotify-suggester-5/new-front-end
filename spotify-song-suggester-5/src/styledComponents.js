@@ -7,6 +7,7 @@ const FormContainer = styled.div`
   color: #121212;
   font-weight: bold;
 
+
   /* * {
     border: 1px solid white;
   } */

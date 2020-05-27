@@ -9,15 +9,21 @@ const Favorites = () => {
   console.log('favorites from store:', favorites);
 
   return (
-    <div>
+    <div className='favoriteSongs'>
+       <h1>Favorited Songs</h1>
       {favorites.map((favSong) => {
         return (
+          <>
+
+          <div className='favSongCard'>
           <FavSongCard
             key={favSong.id}
             title={favSong.title}
             artist={favSong.artist}
             releaseDate={favSong.releaseDate}
           />
+          </div>
+          </>
         );
       })}
     </div>

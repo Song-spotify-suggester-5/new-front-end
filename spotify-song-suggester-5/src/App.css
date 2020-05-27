@@ -46,23 +46,23 @@
 } */
 
 body {
-  background: black;
+  background:white;
 }
 
 p {
-  color: white;
+  color:#121212;
 }
 
 h3 {
-  color: white;
+  color: #121212;
 }
 
 h5 {
-  color: white;
+  color: #121212;
 }
 
 .unclicked {
-  fill: white;
+  fill: #121212;
 }
 
 .unclicked-hide {
@@ -80,7 +80,8 @@ h5 {
 .search-page {
   /* border: 2px dotted red; */
 
-  margin: 0 5% 0 5%;
+  margin: 0 auto;
+  width: 80%; 
 
   display: flex;
   flex-direction: column;
@@ -90,20 +91,22 @@ h5 {
 .search-bar {
   /* border: 2px dotted blue; */
   margin-top: 2%;
-
   display: flex;
   justify-content: center;
   width: 100%;
+
+}
+
+input {
+  width: 30%; 
+  height: 50px; 
 }
 
 /* Song card styles */
 .song-card {
-  border: 5px solid #3CB371
-  ;
-  ;
-  border-radius: 3%;
+  border: 5px solid #3CB371;
+  border-radius: 5px;
   margin: 5%;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -128,4 +131,29 @@ h5 {
 
 .similar-songs {
   width: 100%;
+}
+
+.favoriteSongs {
+  
+  margin: 5%;
+  margin-top: 2%; 
+  padding: 5%; 
+  display: flex;
+  flex-direction: column; 
+  justify-content: space-between;
+  /* align-items: center; */
+  width: 80%; 
+
+}
+
+.favoriteSongs h1 {
+  margin-left: 3%; 
+}
+
+.favSongCard{
+  margin: 3%; 
+  padding: 2%; 
+  border-radius: 5px;
+  border: 5px solid #3CB371;
+  height: 100%;  
 }
