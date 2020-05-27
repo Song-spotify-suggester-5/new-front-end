@@ -4,6 +4,7 @@ import LogIn from './components/Login';
 import SignUp from './components/SignUp';
 import { Link, Route } from 'react-router-dom';
 import SearchBar from './components/SearchBar';
+import Favorites from './components/Favorites';
 
 const initialFormValues = {
   name: '',
@@ -29,13 +30,13 @@ function App() {
 
   return (
     <div>
-      <Route>
-        <SearchBar path="/songs/" />
+      <Route path="/songs/">
+        <SearchBar />
       </Route>
 
-<Route>
-  
-</Route>
+      <Route path="/favorites">
+        <Favorites />
+      </Route>
 
       <Route path="/login">
         <LogIn formValues={formValues} onInputChange={onInputChange} />

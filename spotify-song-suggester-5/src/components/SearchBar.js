@@ -26,7 +26,7 @@ const SearchBar = () => {
       <input value={song} placeholder="search for a song" onChange={handleChange} />
       <div className="songs-container">
         {dummyData.map((song) => (
-          <SongCard title={song.title} artist={song.artist} />
+          <SongCard song={song} key={song.id} />
         ))}
       </div>
     </div>
