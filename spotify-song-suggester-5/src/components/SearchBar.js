@@ -14,6 +14,11 @@ const SearchBar = () => {
     setSong(e.target.value);
   };
 
+  const filtered = dummyData.filter(
+    (dummySong) =>
+      dummySong.title.toLowerCase().includes(song.toLowerCase()) ||
+      dummySong.artist.toLowerCase().includes(song.toLowerCase())
+  );
   //1. run axios call to get songs
   //   axios
   //     .get('https://api.spotify.com/v1/search')
@@ -25,7 +30,7 @@ const SearchBar = () => {
     <div className="search-bar-page">
       <input value={song} placeholder="search for a song" onChange={handleChange} />
       <div className="songs-container">
-        {dummyData.map((song) => (
+        {filtered.map((song) => (
           <SongCard song={song} key={song.id} />
         ))}
       </div>

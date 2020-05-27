@@ -2,53 +2,67 @@
 
 
 import React from "react";
-import {Link} from "react-router-dom"
+import {Link} from "react-router-dom"; 
+import {FormContainer} from "../styledComponents";
 
 
 export default function SignUp(props) {
-  const { formValues, onInputChange } = props;
+  const { formValues, onInputChange, errors } = props;
 
   return (
-      <div>
+    <FormContainer>
+    <div className="formBox">
+      <h1> Sign Up </h1>
     <form>
-      <h1> Sign up </h1>
-
-      <label>
-        <h3>Name</h3>
-        <input
+       <label>
+      <span>Name: </span>
+       <input
           value={formValues.name}
           onChange={onInputChange}
-          name="email"
+          name="name"
           type="text"
         />
+       
       </label>
+      <div className="errors">{errors.name}</div>
+
 
       <label>
-        <h3>Email</h3>
+        <span> Email: </span>
         <input
           value={formValues.email}
           onChange={onInputChange}
           name="email"
           type="text"
         />
+       
       </label>
+      <div className="errors">{errors.email}</div>
 
       <label>
-        <h3>Password</h3>
+        <span> Password:</span>
         <input
           value={formValues.password}
           onChange={onInputChange}
           name="password"
           type="text"
         />
+        
       </label>
-      <br />
-      <button> Sign Up </button>
+      <div className="errors">{errors.password}</div>
 
+      <button> Log In </button>
     </form>
 
-    <p>Already have an account?</p>
-    <button> <Link to="/login">Log In </Link></button>
     </div>
+
+    <div className='switch'>
+
+    <p>Already have an account?</p>
+    <button> <Link to="/login">Sign up</Link> </button>
+
+    </div>
+
+    </FormContainer>
   );
 }

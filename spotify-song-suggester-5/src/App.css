@@ -37,10 +37,42 @@
   }
 }
 
-div {
+/* div {
   margin: 50px auto; 
   width: 80%; 
   text-align: center;
 
 
+} */
+
+body {
+  background: black;
+}
+
+p {
+  color: white;
+}
+
+h3 {
+  color: white;
+}
+
+h5 {
+  color: white;
+}
+
+.unclicked {
+  fill: white;
+}
+
+.unclicked-hide {
+  display: none;
+}
+
+.clicked-heart {
+  fill: #1db954;
+}
+
+.clicked {
+  display: none;
 }

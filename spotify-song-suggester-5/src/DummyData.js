@@ -9,4 +9,5 @@ export const dummyData = [
   { id: 8, title: 'eigth', artist: 'seventhArtist', releaseDate: 1999, favorite: false },
   { id: 9, title: 'ninth', artist: 'ninthArtist ', releaseDate: 1999, favorite: false },
   { id: 10, title: 'tenth', artist: 'tenthArtist ', releaseDate: 1999, favorite: false },
+  { id: 11, title: 'eleventh', artist: 'twelvthArtist ', releaseDate: 1999, favorite: false },
 ];

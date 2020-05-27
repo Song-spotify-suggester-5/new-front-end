@@ -12,9 +12,10 @@ import './index.css';
 import App from './App';
 import combineReducers from './store/reducers';
 
-const store = createStore(combineReducers
+const store = createStore(
+  combineReducers
   // , applyMiddleware(logger)
-  );
+);
 
 ReactDOM.render(
   <Router>
