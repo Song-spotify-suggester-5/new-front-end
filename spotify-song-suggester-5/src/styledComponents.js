@@ -5,20 +5,22 @@ const FormContainer = styled.div`
   @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
   font-family: "Montserrat", sans-serif;
-  color: #1db954;
+  color: #121212;
+  font-weight: bold; 
 
   /* * {
     border: 1px solid white;
   } */
 
   .formBox {
-    color: #1db954;
-    border: 3px solid white;
-    border-radius: 6px;
+    color: #121212;
+    border-bottom: 1px solid #121212;
+    border-top: 1px solid #121212;
+    border-radius: 0px;
     width: 35%;
-    margin: 10% auto;
-    margin-bottom: 5%;
-    background-color: #121212;
+    margin: 6% auto;
+    margin-bottom: 3%;
+    background-color: white;
   }
 
   h1 {
@@ -27,23 +29,29 @@ const FormContainer = styled.div`
 
   a {
     text-decoration: none;
-    color: #b3b3b3;
+    color: #121212;
+
+    :hover {
+        color: #1db954; 
+    }
   }
 
   button {
-    border: 2px solid #b3b3b3;
-    border-radius: 5px;
-    width: 90px;
+    /* border: 2px solid #121212; */
+    border-radius: 20px;
+    width: 150px;
     height: 40px;
     text-align: center;
     font-size: 1.1em;
     font-weight: bold;
-    background-color: black;
-    color: #b3b3b3;
+    background-color: #1db954;
+    color: white;
+   
 
     :hover {
       border: 3px solid #1db954;
-      color: #1db954;
+      color: white;
+      filter: brightness(110%); 
     }
   }
 
@@ -65,15 +73,23 @@ const FormContainer = styled.div`
 
   input {
     height: 20px;
+    width: 170px; 
     align-content: right;
   }
 
   .switch {
     /* text-align: center; */
-    width: 27%;
+    width: 40%;
     margin: 0 auto;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
+
+    a {
+        color: white; 
+        :hover{
+            color: white; 
+        }
+    }
   }
 `;
 
