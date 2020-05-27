@@ -8,6 +8,7 @@ import './App.css';
 import LogIn from './components/Login';
 import SignUp from './components/SignUp';
 import NavBar from './components/NavBar';
+import UserNavBar from './components/UserNavBar';
 import SearchBar from './components/SearchBar';
 import Favorites from './components/Favorites';
 
@@ -59,18 +60,16 @@ function App() {
   return (
     <div>
       <Route path="/songs">
+        <UserNavBar />
         <SearchBar />
       </Route>
 
       <Route path="/favorites">
+        <UserNavBar />
         <Favorites />
       </Route>
 
       <Route path="/">
-        <NavBar />
-      </Route>
-
-      <Route path="/login">
         <LogIn formValues={formValues} onInputChange={onInputChange} />
       </Route>
 
