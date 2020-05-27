@@ -7,14 +7,13 @@ const SongCard = ({ song }) => {
   const dispatch = useDispatch();
   const favorites = useSelector((state) => state.songReducer.favorites);
   const [clicked, setClicked] = useState(false);
-  console.log(clicked);
+
   useEffect(() => {
     console.log({ favorites });
   }, [favorites]);
 
   function addTofavorites() {
-    console.log(song);
-    dispatch({ type: 'ADD_TO_FAVORITES', payload: song });
+    !favorites.includes(song) && dispatch({ type: 'ADD_TO_FAVORITES', payload: song });
     setClicked(true);
   }
 
