@@ -1,12 +1,11 @@
-import styled from "styled-components";
-
+import styled from 'styled-components';
 
 const FormContainer = styled.div`
-  @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   color: #121212;
-  font-weight: bold; 
+  font-weight: bold;
 
   /* * {
     border: 1px solid white;
@@ -32,7 +31,7 @@ const FormContainer = styled.div`
     color: #121212;
 
     :hover {
-        color: #1db954; 
+      color: #1db954;
     }
   }
 
@@ -46,12 +45,11 @@ const FormContainer = styled.div`
     font-weight: bold;
     background-color: #1db954;
     color: white;
-   
 
     :hover {
       border: 3px solid #1db954;
       color: white;
-      filter: brightness(110%); 
+      filter: brightness(110%);
     }
   }
 
@@ -73,7 +71,7 @@ const FormContainer = styled.div`
 
   input {
     height: 20px;
-    width: 170px; 
+    width: 170px;
     align-content: right;
   }
 
@@ -85,49 +83,81 @@ const FormContainer = styled.div`
     justify-content: space-evenly;
 
     a {
-        color: white; 
-        :hover{
-            color: white; 
-        }
+      color: white;
+      :hover {
+        color: white;
+      }
     }
   }
 `;
 
 const NavBarStyles = styled.div`
-
-header {
-  background-color: #121212;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1% 5%;
-}
-
-.header-logo {
-  width: 8%;
-}
-
-img {
-    width: 100%; 
-}
-
-header .header-links {
-  width: 25%;
-  display: flex;
-  justify-content: space-around;
-}
-
-header .header-links a {
-  color: white;
-  font-size: 1.2rem;
-  font-weight: 500;
-  text-decoration: none; 
-
-  :hover {
-      color: #1db954; 
+  header {
+    background-color: #121212;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1% 5%;
   }
-}
 
+  .header-logo {
+    width: 8%;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  header .header-links {
+    width: 25%;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  header .header-links a {
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-decoration: none;
+
+    :hover {
+      color: #1db954;
+    }
+  }
 `;
 
-export { FormContainer, NavBarStyles };
+const UserNavBarStyles = styled.div`
+  header {
+    background-color: #121212;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1% 5%;
+  }
+
+  .header-logo {
+    width: 8%;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  header .header-links {
+    width: 25%;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  header .header-links a {
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-decoration: none;
+
+    :hover {
+      color: #1db954;
+    }
+  }
+`;
+export { FormContainer, NavBarStyles, UserNavBarStyles };

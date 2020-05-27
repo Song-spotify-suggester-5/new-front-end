@@ -3,16 +3,19 @@ import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router } from 'react-router-dom';
 //import redux software
-import { Provider } from 'react-redux';
+import { Provider, useSelector } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
 
 // import components
 import './index.css';
 import App from './App';
-import combineReducers from './reducers';
+import combineReducers from './store/reducers';
 
-const store = createStore(combineReducers, applyMiddleware(logger));
+const store = createStore(
+  combineReducers
+  // , applyMiddleware(logger)
+);
 
 ReactDOM.render(
   <Router>
