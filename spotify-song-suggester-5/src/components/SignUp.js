@@ -51,7 +51,7 @@ export default function SignUp(props) {
       </label>
       <div className="errors">{errors.password}</div>
 
-      <button> Log In </button>
+      <button> Sign Up </button>
     </form>
 
     </div>
@@ -59,7 +59,7 @@ export default function SignUp(props) {
     <div className='switch'>
 
     <p>Already have an account?</p>
-    <button> <Link to="/login">Sign up</Link> </button>
+    <button> <Link to="/login">Log In</Link> </button>
 
     </div>
 
