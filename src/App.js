@@ -6,7 +6,7 @@ import axios from 'axios';
 
 // import components
 import './App.css';
-import LogIn from './forms/LogIn';
+import LogIn from './forms/Login.js';
 import SignUp from './forms/SignUp';
 import NavBar from './components/NavBar';
 import UserNavBar from './components/UserNavBar';
