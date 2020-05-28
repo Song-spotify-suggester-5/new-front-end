@@ -11,7 +11,7 @@ export default function UserNavBar() {
           <img src={logo} alt="" />
         </div>
         <div className="header-links">
-          <Link to="/login">Log Out</Link>
+          <Link to="/">Log Out</Link>
           <Link to="/favorites">Favorites</Link>
           <Link to="/songs">Search</Link>
         </div>

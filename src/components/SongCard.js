@@ -3,7 +3,7 @@ import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
 
 const SongCard = ({ song }) => {
-  const { id, title, artist, releaseDate } = song;
+  const { id, title, song_by, released_year } = song;
   const dispatch = useDispatch();
   const favorites = useSelector((state) => state.songReducer.favorites);
   const [clicked, setClicked] = useState(false);
@@ -20,8 +20,8 @@ const SongCard = ({ song }) => {
       <div className="song-card-info">
         <p>{id}</p>
         <h3>{title}</h3>
-        <h5>By: {artist}</h5>
-        <h5>Released: {releaseDate}</h5>
+        <h5>By: {song_by}</h5>
+        <h5>Released: {released_year}</h5>
       </div>
 
       <div className="song-card-features">
