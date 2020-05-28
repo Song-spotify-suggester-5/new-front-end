@@ -20,7 +20,12 @@ const SearchBar = () => {
   };
 
   useEffect(() => {
-
+    axios.get('https://bw-spotify-songs.herokuapp.com/api/songs')
+    .then(res => {
+      console.log(res)
+      dispatch({type:'FETCH_SONGS_SUCCESS', payload: res.data})
+    })
+    .catch()  
   }, []);
 
   console.log('songs before filtered', songs.flat());
