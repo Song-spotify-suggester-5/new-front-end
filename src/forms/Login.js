@@ -6,13 +6,13 @@ import {FormContainer} from "../styledComponents";
 
 
 export default function LogIn(props) {
-  const { formValues, onInputChange } = props;
+  const { formValues, onInputChange, LoginSubmit } = props;
 
   return (
     <FormContainer>
     <div className="formBox">
       <h1> Log In </h1>
-    <form>
+    <form onSubmit={LoginSubmit}>
 
       <label>
         <span> Email: </span>

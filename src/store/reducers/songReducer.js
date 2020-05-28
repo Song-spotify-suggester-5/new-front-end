@@ -1,21 +1,28 @@
 const songState = {
   songs: [],
-  error: '',
+  fetchError: '',
   favorites: [],
+  postToFavorites: false,
+  postError: '',
   similarSongs: [],
 };
 
 const songReducer = (state = songState, action) => {
   switch (action.type) {
     case 'FETCH_SONGS_START':
-      return null;
+      return {
+        ...state,
+        fetchingSongs: true,
+      };
     case 'FETCH_SONGS_SUCCESS':
-      return null;
+      return {
+        ...state,
+        songs: [action.payload],
+      };
     case 'FETCH_SONGS_FAILURE':
-      return null;
+      return { ...state, fetchError: action.payload };
 
     case 'ADD_TO_FAVORITES':
-      console.log(action.payload);
       return {
         ...state,
         favorites: [...state.favorites, action.payload],

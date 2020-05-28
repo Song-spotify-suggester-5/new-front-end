@@ -68,6 +68,14 @@ function App() {
       .catch((err) => console.error(err.message));
   };
 
+  const LoginSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post('https://bw-spotify-songs.herokuapp.com/api/auth/login', formValues)
+      .then((res) => console.log(res))
+      .catch((err) => console.error(err.message));
+  };
+
   return (
     <div>
       <Route path="/songs">
@@ -82,7 +90,7 @@ function App() {
 
       <Route path="/login">
         <NavBar />
-        <LogIn formValues={formValues} onInputChange={onInputChange} />
+        <LogIn formValues={formValues} onInputChange={onInputChange} LoginSubmit={LoginSubmit} />
       </Route>
 
       <Route path="/signup">

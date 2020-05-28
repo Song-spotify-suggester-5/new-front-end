@@ -4,12 +4,19 @@ const userState = {
     password: '',
   },
   error: '',
-  chosen: false,
   loading: false,
 };
 
 const userReducer = (state = userState, action) => {
   switch (action.type) {
+    case 'SIGNIN_START':
+      return{
+
+      }
+      case'SIGNIN_FAIL':
+      return{
+
+      }
     default:
       return state;
   }
