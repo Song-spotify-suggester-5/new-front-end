@@ -27,7 +27,7 @@ const SongCard = ({ song }) => {
       <div className="song-card-features">
         <div className="heart" onClick={() => addTofavorites()}>
           <AiOutlineHeart className={`unclicked${clicked === true ? '-hide' : ''}`} />
-          <AiFillHeart className={`clicked${clicked === true && '-heart'}`} />
+          <AiFillHeart className={`unclicked-hide clicked${clicked === true && '-heart'}`} />
         </div>
 
         <button className="similar-songs">
