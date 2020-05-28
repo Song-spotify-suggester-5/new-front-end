@@ -17,7 +17,7 @@ const songReducer = (state = songState, action) => {
     case 'FETCH_SONGS_SUCCESS':
       return {
         ...state,
-        songs: [action.payload],
+        songs: action.payload,
       };
     case 'FETCH_SONGS_FAILURE':
       return { ...state, fetchError: action.payload };

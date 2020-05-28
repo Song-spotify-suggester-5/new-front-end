@@ -61,21 +61,6 @@ h5 {
   color: #121212;
 }
 
-.unclicked {
-  fill: #121212;
-}
-
-.unclicked-hide {
-  display: none;
-}
-
-.clicked-heart {
-  fill: #1db954;
-}
-
-.clicked {
-  display: none;
-}
 /* search page styles */
 .search-page {
   /* border: 2px dotted red; */
@@ -123,9 +108,26 @@ input {
   padding: 5%;
 }
 
+/* heart styles */
 .heart {
+  border: 2px dotted grey;
+
   padding-left: 40%;
   padding-bottom: 10%;
+}
+
+.heart-outline-hide {
+  display: none;
+}
+
+.heart-fill {
+  border: 5px dotted blue;
+
+  display: none;
+}
+
+.heart-fill-on {
+  fill: #1db954;
 }
 
 .similar-songs {

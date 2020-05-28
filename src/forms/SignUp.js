@@ -14,7 +14,7 @@ export default function SignUp(props) {
         <form onSubmit={SignupSubmit}>
           <label>
             <span>Name: </span>
-            <input value={formValues.name} onChange={onInputChange} name="name" type="text" />
+            <input value={formValues.name} onChange={onInputChange} name="username" type="text" />
           </label>
           <div className="errors">{errors.name}</div>
 

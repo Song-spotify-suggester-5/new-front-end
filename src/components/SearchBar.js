@@ -20,12 +20,22 @@ const SearchBar = () => {
   };
 
   useEffect(() => {
-
+    dispatch({ type: 'FETCH_SONGS_START' });
+    axios
+      .get('https://bw-spotify-songs.herokuapp.com/api/songs ')
+      .then((res) => {
+        console.log('res', res.data);
+        dispatch({ type: 'FETCH_SONGS_SUCCESS', payload: res.data });
+      })
+      .catch((err) => {
+        dispatch({
+          type: 'FETCH_SONGS_FAILURE',
+          payload: err.message,
+        });
+      });
   }, []);
 
-  console.log('songs before filtered', songs.flat());
-
-  const filtered = songs.flat().filter(
+  const filtered = songs.filter(
     (track) =>
       track.title.toLowerCase().includes(searchInput.toLowerCase()) ||
       track.song_by.toLowerCase().includes(searchInput.toLowerCase())
