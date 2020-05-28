@@ -12,7 +12,7 @@ export default function NavBar() {
         </div>
         <div className="header-links">
           <Link to="">About</Link>
-          <Link to="/login">Log In</Link>
+          <Link to="/">Log In</Link>
           <Link to="/signup">Sign Up</Link>
         </div>
       </header>

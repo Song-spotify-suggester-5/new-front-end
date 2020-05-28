@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, useHistory } from 'react-router-dom';
 import * as yup from 'yup';
 import formSchema from './formSchema';
 import axios from 'axios';
-
+import axiosWithAuth from './utils/axiosWithAuth';
 // import components
 import './App.css';
 import LogIn from './forms/Login.js';
@@ -12,6 +12,7 @@ import NavBar from './components/NavBar';
 import UserNavBar from './components/UserNavBar';
 import SearchBar from './components/SearchBar';
 import Favorites from './components/Favorites';
+import { useSelector, useDispatch } from 'react-redux';
 
 const initialFormValues = {
   name: '',
@@ -31,8 +32,11 @@ function App() {
   const [users, setUsers] = useState(initialUsers);
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
-
+  const dispatch = useDispatch();
   console.log(formValues);
+  const { push } = useHistory();
+  const SigninError = useSelector((state) => state.userReducer.SigninError);
+  const LoginError = useSelector((state) => state.userReducer.LoginError);
 
   const onInputChange = (evt) => {
     const name = evt.target.name;
@@ -63,10 +67,28 @@ function App() {
 
   const SignupSubmit = (e) => {
     e.preventDefault();
+
+    dispatch({ type: 'NETWORK_REQUEST_START' });
     axios
       .post('https://bw-spotify-songs.herokuapp.com/api/auth/register', formValues)
-      .then((res) => console.log(res))
-      .catch((err) => console.error(err.message));
+      .then((res) => {
+        console.log(res);
+        push('/');
+      })
+      .catch((err) => dispatch({ type: 'SIGNIN_ERROR', payload: err.message }));
+  };
+
+  const LoginSubmit = (e) => {
+    e.preventDefault();
+    dispatch({ type: 'NETWORK_REQUEST_START' });
+    axiosWithAuth()
+      .post('https://bw-spotify-songs.herokuapp.com/api/auth/login', formValues)
+      .then((res) => {
+        console.log(res);
+        localStorage.setItem('token', JSON.stringify(res.data.payload));
+        push('/songs');
+      })
+      .catch((err) => dispatch({ type: 'LOGIN_ERROR', payload: err.message }));
   };
 
   return (
@@ -81,14 +103,25 @@ function App() {
         <Favorites />
       </Route>
 
-      <Route path="/">
+      <Route exact path="/">
         <NavBar />
-        <LogIn formValues={formValues} onInputChange={onInputChange} />
+        <LogIn
+          formValues={formValues}
+          onInputChange={onInputChange}
+          LoginSubmit={LoginSubmit}
+          LoginError={LoginError}
+        />
       </Route>
 
       <Route path="/signup">
         <NavBar />
-        <SignUp formValues={formValues} onInputChange={onInputChange} errors={formErrors} SignupSubmit={SignupSubmit} />
+        <SignUp
+          formValues={formValues}
+          onInputChange={onInputChange}
+          errors={formErrors}
+          SignupSubmit={SignupSubmit}
+          SigninError={SigninError}
+        />
       </Route>
     </div>
   );

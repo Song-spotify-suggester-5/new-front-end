@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { FormContainer } from '../styledComponents';
 
 export default function SignUp(props) {
-  const { formValues, onInputChange, errors, SignupSubmit } = props;
+  const { formValues, onInputChange, errors, SignupSubmit, SigninError } = props;
 
   return (
     <FormContainer>
@@ -29,7 +29,7 @@ export default function SignUp(props) {
             <input value={formValues.password} onChange={onInputChange} name="password" type="text" />
           </label>
           <div className="errors">{errors.password}</div>
-
+          {SigninError && <h5 className="error"> Network Error: {SigninError}</h5>}
           <button> Sign Up </button>
         </form>
       </div>
@@ -38,7 +38,7 @@ export default function SignUp(props) {
         <p>Already have an account?</p>
         <button>
           {' '}
-          <Link to="/login">Log In</Link>{' '}
+          <Link to="/">Log In</Link>{' '}
         </button>
       </div>
     </FormContainer>
