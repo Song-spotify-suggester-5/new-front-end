@@ -88,7 +88,7 @@ function App() {
         <Favorites />
       </Route>
 
-      <Route path="/login">
+      <Route path="/">
         <NavBar />
         <LogIn formValues={formValues} onInputChange={onInputChange} LoginSubmit={LoginSubmit} />
       </Route>
