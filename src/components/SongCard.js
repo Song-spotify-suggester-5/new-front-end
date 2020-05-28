@@ -9,7 +9,7 @@ const SongCard = ({ song }) => {
   const [clicked, setClicked] = useState(false);
 
   useEffect(() => {
-    console.log({ favorites });
+    // console.log({ favorites });
   }, [favorites]);
 
   function addTofavorites() {
@@ -33,9 +33,9 @@ const SongCard = ({ song }) => {
         </div>
 
         <button className="similar-songs">
-         More of this
+          More of this
           <span role="img" aria-label="emoji">
-             🔎
+            🔎
           </span>
         </button>
       </div>

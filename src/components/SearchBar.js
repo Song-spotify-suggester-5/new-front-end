@@ -19,12 +19,12 @@ const SearchBar = () => {
       dummySong.title.toLowerCase().includes(song.toLowerCase()) ||
       dummySong.artist.toLowerCase().includes(song.toLowerCase())
   );
-  //1. run axios call to get songs
-  //   axiosWithAuth
-  //     .post('beckend enpoint for login')
-  //     .then((res) => console.log({ Search_Res: res }))
-  //     .catch((err) => console.error(err.message));
-  //2. filter the songs in the .then to include whats in the song state
+  // 1. run axios call to get songs
+  axios
+    .get('https://bw-spotify-songs.herokuapp.com/api')
+    .then((res) => console.log({ Songs_Request: res }))
+    .catch((err) => console.error(err.message));
+  // 2. filter the songs in the .then to include whats in the song state
 
   return (
     <div className="search-page">

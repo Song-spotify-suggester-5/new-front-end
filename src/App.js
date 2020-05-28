@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { Route } from 'react-router-dom';
 import * as yup from 'yup';
 import formSchema from './formSchema';
+import axios from 'axios';
 
 // import components
 import './App.css';
-import LogIn from './components/LogIn';
-import SignUp from './components/SignUp';
+import LogIn from './forms/LogIn';
+import SignUp from './forms/SignUp';
 import NavBar from './components/NavBar';
 import UserNavBar from './components/UserNavBar';
 import SearchBar from './components/SearchBar';
@@ -14,13 +15,13 @@ import Favorites from './components/Favorites';
 
 const initialFormValues = {
   name: '',
-  email: '',
+  // email: '',
   password: '',
 };
 
 const initialFormErrors = {
   name: '',
-  email: '',
+  // email: '',
   password: '',
 };
 
@@ -30,6 +31,8 @@ function App() {
   const [users, setUsers] = useState(initialUsers);
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
+
+  console.log(formValues);
 
   const onInputChange = (evt) => {
     const name = evt.target.name;
@@ -58,6 +61,14 @@ function App() {
     //change
   };
 
+  const SignupSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post('https://bw-spotify-songs.herokuapp.com/api/auth/register', formValues)
+      .then((res) => console.log(res))
+      .catch((err) => console.error(err.message));
+  };
+
   return (
     <div>
       <Route path="/songs">
@@ -77,7 +88,7 @@ function App() {
 
       <Route path="/signup">
         <NavBar />
-        <SignUp formValues={formValues} onInputChange={onInputChange} errors={formErrors} />
+        <SignUp formValues={formValues} onInputChange={onInputChange} errors={formErrors} SignupSubmit={SignupSubmit} />
       </Route>
     </div>
   );
