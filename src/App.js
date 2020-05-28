@@ -33,7 +33,6 @@ function App() {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const dispatch = useDispatch();
-  console.log(formValues);
   const { push } = useHistory();
   const SigninError = useSelector((state) => state.userReducer.SigninError);
   const LoginError = useSelector((state) => state.userReducer.LoginError);

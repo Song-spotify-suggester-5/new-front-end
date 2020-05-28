@@ -6,7 +6,7 @@ import FavSongCard from './FavSongCard';
 const Favorites = () => {
   const favorites = useSelector((state) => state.songReducer.favorites);
 
-  console.log('favorites from store:', favorites);
+
 
   return (
     <div className='favoriteSongs'>
@@ -19,8 +19,8 @@ const Favorites = () => {
           <FavSongCard
             key={favSong.id}
             title={favSong.title}
-            artist={favSong.artist}
-            releaseDate={favSong.releaseDate}
+            song_by={favSong.song_by}
+            released_year={favSong.released_year}
           />
           </div>
           </>

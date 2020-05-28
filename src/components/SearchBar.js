@@ -1,37 +1,42 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 //import components
 import SongCard from './SongCard';
-import { dummyData } from '../DummyData';
+// import { dummyData } from '../DummyData';
 
 const SearchBar = () => {
   //set state for song
-  const [song, setSong] = useState('');
+  const [searchInput, setSearchInput] = useState('');
+
+  // redux hooks
+  const dispatch = useDispatch();
+  const songs = useSelector((state) => state.songReducer.songs);
+  const fetchError = useSelector((state) => state.songReducer.fetchError);
 
   const handleChange = (e) => {
-    setSong(e.target.value);
+    setSearchInput(e.target.value);
   };
 
-  const filtered = dummyData.filter(
-    (dummySong) =>
-      dummySong.title.toLowerCase().includes(song.toLowerCase()) ||
-      dummySong.artist.toLowerCase().includes(song.toLowerCase())
+  useEffect(() => {
+
+  }, []);
+
+  console.log('songs before filtered', songs.flat());
+
+  const filtered = songs.flat().filter(
+    (track) =>
+      track.title.toLowerCase().includes(searchInput.toLowerCase()) ||
+      track.song_by.toLowerCase().includes(searchInput.toLowerCase())
   );
-  // 1. run axios call to get songs
-  axios
-    .get('https://bw-spotify-songs.herokuapp.com/api')
-    .then((res) => console.log({ Songs_Request: res }))
-    .catch((err) => console.error(err.message));
-  // 2. filter the songs in the .then to include whats in the song state
 
   return (
     <div className="search-page">
       <div className="search-bar">
-        <input value={song} placeholder="search for a song" onChange={handleChange} />
+        <input value={searchInput} placeholder="search for a song" onChange={handleChange} />
       </div>
-
+      {fetchError && <h3 className="error">Could not get songs: {fetchError}</h3>}
       <div className="songs-container">
         {filtered.map((song) => (
           <SongCard song={song} key={song.id} />
