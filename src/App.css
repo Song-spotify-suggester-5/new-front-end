@@ -71,6 +71,7 @@ h5 {
 
 .clicked-heart {
   fill: #1db954;
+  display: block; 
 }
 
 .clicked {
