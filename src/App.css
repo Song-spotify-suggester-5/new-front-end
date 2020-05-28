@@ -61,6 +61,22 @@ h5 {
   color: #121212;
 }
 
+.unclicked {
+  fill: #121212;
+}
+
+.unclicked-hide {
+  display: none;
+}
+
+.clicked-heart {
+  fill: #1db954;
+  display: block;
+}
+
+.clicked {
+  display: none;
+}
 /* search page styles */
 .search-page {
   /* border: 2px dotted red; */
