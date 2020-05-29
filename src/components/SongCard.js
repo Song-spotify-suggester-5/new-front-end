@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
 import axiosWithAuth from '../utils/axiosWithAuth';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-
+toast.configure();
 const SongCard = ({ song }) => {
   const { id, title, song_by, released_year } = song;
   const dispatch = useDispatch();
@@ -15,6 +17,10 @@ const SongCard = ({ song }) => {
     console.log(favorites);
   }, [favorites]);
 
+  const notify = () => {
+    toast.success(`Added ${title} to favorites!`);
+  };
+
   function addTofavorites() {
     // post to save favorite songs
     favorites.map((favorite) => favorite.id === id && setMatch(true));
@@ -22,9 +28,13 @@ const SongCard = ({ song }) => {
     !match &&
       axiosWithAuth()
         .post('/songs', song)
-        .then((res) => console.log('posted to favorites', res))
+        .then((res) => {
+          console.log('posted to favorites', res);
+
+          notify();
+          setClicked(true);
+        })
         .catch((err) => console.log(err));
-    setClicked(true);
   }
 
   return (
