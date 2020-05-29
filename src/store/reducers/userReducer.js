@@ -6,7 +6,7 @@ const userState = {
   SigninError: '',
   LoginError: '',
   chosen: false,
-  loading: false,
+  isLoading: false,
 };
 
 const userReducer = (state = userState, action) => {

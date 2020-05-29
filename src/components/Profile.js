@@ -3,7 +3,11 @@ import { FormContainer } from '../styledComponents';
 import { Link, useHistory } from 'react-router-dom';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import { useSelector, useDispatch } from 'react-redux';
+import UserNavBar from './UserNavBar';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
+toast.configure();
 const Profile = () => {
   const { push } = useHistory();
   const dispatch = useDispatch();
@@ -20,6 +24,11 @@ const Profile = () => {
     password: '',
   });
   console.log(formValues);
+
+  const notify = () => {
+    toast.success('Password has been successfully changed!', { position: toast.POSITION.TOP_CENTER });
+  };
+
   function onInputChange(e) {
     setFormValues({ username: username, password: e.target.value });
   }
@@ -28,7 +37,10 @@ const Profile = () => {
     e.preventDefault();
     axiosWithAuth()
       .put(`/users/${id}`, formValues)
-      .then((res) => console.log(res))
+      .then((res) => {
+        console.log(res);
+        notify();
+      })
       .catch((err) => console.error(err));
 
     setFormValues({
@@ -48,26 +60,29 @@ const Profile = () => {
   }
 
   return (
-    <div className="profile-form">
-      <FormContainer>
-        <div className="formBox">
-          <h1> Change Password </h1>
-          <form onSubmit={onSubmit}>
-            <label>
-              Name: <input value={username} name="username" placeholder={username} />
-            </label>
+    <>
+      <UserNavBar />
+      <div className="profile-form">
+        <FormContainer>
+          <div className="formBox">
+            <h1> Change Password </h1>
+            <form onSubmit={onSubmit}>
+              <label>
+                Name: <input value={username} name="username" placeholder={username} />
+              </label>
 
-            <label>
-              <span> Password:</span>
-              <input value={formValues.password} onChange={onInputChange} name="password" type="text" />
-            </label>
+              <label>
+                <span> Password:</span>
+                <input value={formValues.password} onChange={onInputChange} name="password" type="text" />
+              </label>
 
-            <button> Change Password </button>
-          </form>
-        </div>
-      </FormContainer>
-      <button onClick={deleteAccount}>Delete Account</button>
-    </div>
+              <button> Change Password </button>
+            </form>
+          </div>
+        </FormContainer>
+        <button onClick={deleteAccount}>Delete Account</button>
+      </div>
+    </>
   );
 };
 export default Profile;

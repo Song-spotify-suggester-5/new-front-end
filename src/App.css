@@ -182,3 +182,8 @@ input {
   flex-direction: column;
   justify-content: center;
 }
+
+.Toastify__toast--success {
+  background-color: #1db954;
+  color: white;
+}
