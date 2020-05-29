@@ -49,13 +49,14 @@ function App() {
   const [formErrors, setFormErrors] = useState(initialFormErrors);
 
   const notify_delete = () => {
-    accountDeleted && toast.error('Account was succesfully deleted!', { position: toast.POSITION.TOP_CENTER });
-    dispatch({ type: 'DELETE_ACCOUNT_NOTICE_END' });
-
-    // accountDeleted = false;
     console.log('inside notify_delete', accountDeleted);
+
+    accountDeleted && toast.error('Account was succesfully deleted!', { position: toast.POSITION.TOP_CENTER });
+
+    dispatch({ type: 'DELETE_ACCOUNT_NOTICE_END' });
   };
   notify_delete();
+  accountDeleted = false;
 
   const onInputChange = (evt) => {
     const name = evt.target.name;
