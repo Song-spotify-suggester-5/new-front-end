@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { DotScale } from 'styled-loaders-react';
 
+//import components
 import UserNavBar from '../navbars/UserNavBar';
 
 toast.configure();
@@ -69,23 +70,27 @@ const Profile = () => {
     <>
       <UserNavBar />
       <div className="profile-form">
-        <FormContainer>
+        <FormContainer className="profile-formBox">
           <div className="formBox">
-            <h1> Change Password </h1>
-            <form onSubmit={onSubmit}>
-              <label>
-                Name: <input value={username} name="username" placeholder={username} />
-              </label>
+            <div className="needed-for-styling"></div>
+              <h1> Change Password </h1>
+              <form onSubmit={onSubmit}>
+                <label>
+                  Name: <input value={username} name="username" placeholder={username} />
+                </label>
 
-              <label>
-                <span> Password:</span>
-                <input value={formValues.password} onChange={onInputChange} name="password" type="text" />
-              </label>
+                <label>
+                  <span> Password:</span>
+                  <input value={formValues.password} onChange={onInputChange} name="password" type="text" />
+                </label>
+              </form>
+            
 
+            <div >
               {isLoading ? <DotScale color="#1DB954" /> : <button> Change Password </button>}
-            </form>
+            </div>
           </div>
-          <button onClick={deleteAccount}>Delete Account</button>
+          <button className="delete-profile"onClick={deleteAccount}>Delete Account</button>
         </FormContainer>
       </div>
     </>

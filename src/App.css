@@ -187,3 +187,13 @@ input {
   background-color: #1db954;
   color: white;
 }
+
+.profile-formBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.delete-profile{
+  border: 2px dotted red;
+}
