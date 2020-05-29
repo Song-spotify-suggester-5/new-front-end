@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
+import axiosWithAuth from '../utils/axiosWithAuth';
 //import components
 import SongCard from './SongCard';
 // import { dummyData } from '../DummyData';
@@ -9,6 +9,7 @@ import SongCard from './SongCard';
 const SearchBar = () => {
   //set state for song
   const [searchInput, setSearchInput] = useState('');
+
 
   // redux hooks
   const dispatch = useDispatch();
@@ -20,17 +21,23 @@ const SearchBar = () => {
   };
 
   useEffect(() => {
-    axios.get('https://bw-spotify-songs.herokuapp.com/api/songs')
-    .then(res => {
-      console.log(res)
-      dispatch({type:'FETCH_SONGS_SUCCESS', payload: res.data})
-    })
-    .catch()  
+    // dispatch({ type: 'FETCH_SONGS_START' });
+    // axios
+    //   .get('https://bw-spotify-songs.herokuapp.com/api/songs ')
+    //   .then((res) => {
+    //     console.log('res', res.data);
+    //     res.data.map((song) => dispatch({ type: 'FETCH_SONGS_SUCCESS', payload: song }));
+    //   })
+    //   .catch((err) => {
+    //     dispatch({
+    //       type: 'FETCH_SONGS_FAILURE',
+    //       payload: err.message,
+    //     });
+    //   });
   }, []);
 
-  console.log('songs before filtered', songs.flat());
-
-  const filtered = songs.flat().filter(
+  // console.log(songs);
+  const filtered = songs.filter(
     (track) =>
       track.title.toLowerCase().includes(searchInput.toLowerCase()) ||
       track.song_by.toLowerCase().includes(searchInput.toLowerCase())

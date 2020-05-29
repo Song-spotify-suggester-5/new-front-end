@@ -13,8 +13,8 @@ export default function LogIn(props) {
         <h1> Log In </h1>
         <form onSubmit={LoginSubmit}>
           <label>
-            <span> Email: </span>
-            <input value={formValues.email} onChange={onInputChange} name="email" type="text" />
+            <span> Username: </span>
+            <input value={formValues.username} onChange={onInputChange} name="username" type="text" />
           </label>
 
           <label>

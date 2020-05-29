@@ -71,7 +71,7 @@ h5 {
 
 .clicked-heart {
   fill: #1db954;
-  display: block; 
+  display: block;
 }
 
 .clicked {
@@ -124,9 +124,26 @@ input {
   padding: 5%;
 }
 
+/* heart styles */
 .heart {
+  /* border: 2px dotted grey; */
+
   padding-left: 40%;
   padding-bottom: 10%;
+}
+
+.heart-outline-hide {
+  display: none;
+}
+
+.heart-fill {
+  border: 5px dotted blue;
+
+  display: none;
+}
+
+.heart-fill-on {
+  fill: #1db954;
 }
 
 .similar-songs {
@@ -158,4 +175,10 @@ input {
 
 .error {
   color: crimson;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
