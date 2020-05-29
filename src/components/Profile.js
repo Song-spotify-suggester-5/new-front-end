@@ -62,7 +62,6 @@ const Profile = () => {
       .then((res) => {
         dispatch({ type: 'DELETE_ACCOUNT_NOTICE' });
         push('/');
-        dispatch({ type: 'DELETE_ACCOUNT_NOTICE_END' });
         console.log(res);
       })
       .catch((err) => console.log(err));

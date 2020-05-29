@@ -16,6 +16,8 @@ const userReducer = (state = userState, action) => {
         ...state,
         isLoading: true,
         accountDeleted: false,
+        SigninError: '',
+        LoginError: '',
       };
     case 'NETWORK_REQUEST_SUCCESS':
       return {
