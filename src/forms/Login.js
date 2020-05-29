@@ -2,9 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FormContainer } from '../styledComponents';
 import { DotScale } from 'styled-loaders-react';
+import { useSelector } from 'react-redux';
 
 export default function LogIn(props) {
-  const { formValues, onInputChange, LoginError, LoginSubmit, isLoading } = props;
+  const { formValues, onInputChange, LoginSubmit, isLoading, removeLoginError } = props;
+
+  let LoginError = useSelector((state) => state.userReducer.LoginError);
+
+  console.log(LoginError);
 
   return (
     <FormContainer>
@@ -29,7 +34,9 @@ export default function LogIn(props) {
         <p>Need to make an account?</p>
         <button>
           {' '}
-          <Link to="/signup">Sign up</Link>{' '}
+          <Link to="/signup" onClick={() => removeLoginError()}>
+            Sign up
+          </Link>{' '}
         </button>
       </div>
     </FormContainer>
