@@ -4,6 +4,7 @@ import * as yup from 'yup';
 import formSchema from './formSchema';
 import axios from 'axios';
 import axiosWithAuth from './utils/axiosWithAuth';
+import ProtectedRoute from './utils/ProtectedRoute';
 // import components
 import './App.css';
 import LogIn from './forms/Login.js';
@@ -95,7 +96,7 @@ function App() {
         localStorage.setItem('token', res.data.token);
         localStorage.setItem('id', res.data.id);
         localStorage.setItem('username', res.data.username);
-      
+
         setFormValues({
           username: '',
           password: '',
@@ -111,20 +112,11 @@ function App() {
 
   return (
     <div>
-      <Route path="/profile">
-        <UserNavBar />
-        <Profile />
-      </Route>
+      <ProtectedRoute path="/profile" component={Profile} />
 
-      <Route path="/songs">
-        <UserNavBar />
-        <SearchBar />
-      </Route>
+      <ProtectedRoute path="/songs" component={SearchBar} />
 
-      <Route path="/favorites">
-        <UserNavBar />
-        <Favorites />
-      </Route>
+      <ProtectedRoute path="/favorites" component={Favorites} />
 
       <Route exact path="/">
         <NavBar />

@@ -4,12 +4,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import axiosWithAuth from '../utils/axiosWithAuth';
 //import components
 import SongCard from './SongCard';
+import UserNavBar from './UserNavBar';
 // import { dummyData } from '../DummyData';
 
 const SearchBar = () => {
   //set state for song
   const [searchInput, setSearchInput] = useState('');
-
 
   // redux hooks
   const dispatch = useDispatch();
@@ -44,17 +44,20 @@ const SearchBar = () => {
   );
 
   return (
-    <div className="search-page">
-      <div className="search-bar">
-        <input value={searchInput} placeholder="search for a song" onChange={handleChange} />
+    <>
+      <UserNavBar />
+      <div className="search-page">
+        <div className="search-bar">
+          <input value={searchInput} placeholder="search for a song" onChange={handleChange} />
+        </div>
+        {fetchError && <h3 className="error">Could not get songs: {fetchError}</h3>}
+        <div className="songs-container">
+          {filtered.map((song) => (
+            <SongCard song={song} key={song.id} />
+          ))}
+        </div>
       </div>
-      {fetchError && <h3 className="error">Could not get songs: {fetchError}</h3>}
-      <div className="songs-container">
-        {filtered.map((song) => (
-          <SongCard song={song} key={song.id} />
-        ))}
-      </div>
-    </div>
+    </>
   );
 };
 export default SearchBar;
