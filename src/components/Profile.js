@@ -3,14 +3,17 @@ import { FormContainer } from '../styledComponents';
 import { Link, useHistory } from 'react-router-dom';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import { useSelector, useDispatch } from 'react-redux';
-import UserNavBar from './UserNavBar';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { DotScale } from 'styled-loaders-react';
+
+import UserNavBar from '../navbars/UserNavBar';
 
 toast.configure();
 const Profile = () => {
   const { push } = useHistory();
   const dispatch = useDispatch();
+  let isLoading = useSelector((state) => state.userReducer.isLoading);
   const id = useSelector((state) => state.userReducer.user.id);
   console.log('id:', id);
   const username = useSelector((state) => state.userReducer.user.username);
@@ -35,11 +38,13 @@ const Profile = () => {
 
   function onSubmit(e) {
     e.preventDefault();
+    dispatch({ type: 'NETWORK_REQUEST_START' });
     axiosWithAuth()
       .put(`/users/${id}`, formValues)
       .then((res) => {
         console.log(res);
         notify();
+        dispatch({ type: 'NETWORK_REQUEST_SUCCESS' });
       })
       .catch((err) => console.error(err));
 
@@ -76,7 +81,7 @@ const Profile = () => {
                 <input value={formValues.password} onChange={onInputChange} name="password" type="text" />
               </label>
 
-              <button> Change Password </button>
+              {isLoading ? <DotScale color="#1DB954" /> : <button> Change Password </button>}
             </form>
           </div>
         </FormContainer>

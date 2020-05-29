@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import FavSongCard from './FavSongCard';
-import UserNavBar from './UserNavBar';
+import UserNavBar from '../navbars/UserNavBar';
 const Favorites = () => {
   const favorites = useSelector((state) => state.songReducer.favorites);
   const dispatch = useDispatch();
