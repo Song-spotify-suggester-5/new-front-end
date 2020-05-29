@@ -14,7 +14,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import './App.css';
 import LogIn from './forms/Login.js';
 import SignUp from './forms/SignUp';
-import NavBar from './components/NavBar';
+import NavBar from './navbars/NavBar';
 import SearchBar from './components/SearchBar';
 import Favorites from './components/Favorites';
 import Profile from './components/Profile';
@@ -82,6 +82,7 @@ function App() {
       toast.success('Signup was succesful!', { position: toast.POSITION.TOP_CENTER });
     };
 
+    dispatch({ type: 'NETWORK_REQUEST_START' });
     axios
       .post('https://bw-spotify-songs.herokuapp.com/api/auth/register', formValues)
       .then((res) => {
@@ -91,6 +92,7 @@ function App() {
           username: '',
           password: '',
         });
+        dispatch({ type: 'NETWORK_REQUEST_SUCCESS' });
       })
       .catch((err) =>
         err.message.includes('409')
@@ -142,6 +144,7 @@ function App() {
           onInputChange={onInputChange}
           LoginSubmit={LoginSubmit}
           LoginError={LoginError}
+          isLoading={isLoading}
         />
       </Route>
 

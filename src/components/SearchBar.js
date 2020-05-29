@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import axiosWithAuth from '../utils/axiosWithAuth';
 //import components
 import SongCard from './SongCard';
-import UserNavBar from './UserNavBar';
+import UserNavBar from '../navbars/UserNavBar';
 // import { dummyData } from '../DummyData';
 
 const SearchBar = () => {

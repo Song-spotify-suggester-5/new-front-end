@@ -14,7 +14,12 @@ const userReducer = (state = userState, action) => {
     case 'NETWORK_REQUEST_START':
       return {
         ...state,
-        loading: true,
+        isLoading: true,
+      };
+    case 'NETWORK_REQUEST_SUCCESS':
+      return {
+        ...state,
+        isLoading: false,
       };
     case 'SIGNIN_ERROR':
       return {
