@@ -20,7 +20,7 @@ import Favorites from './components/Favorites';
 import Profile from './components/Profile';
 
 const initialFormValues = {
-  username: '',
+  usernname: '',
   // email: '',
   password: '',
 };

@@ -14,10 +14,10 @@ export default function SignUp(props) {
         <h1> Sign Up </h1>
         <form onSubmit={SignupSubmit}>
           <label>
-            <span>Name: </span>
-            <input value={formValues.username} onChange={onInputChange} name="username" type="text" />
+            <span> Username: </span>
+            <input value={formValues.name} onChange={onInputChange} name="username" type="text" />
           </label>
-          <div className="error">{errors.name}</div>
+          <div className="errors">{errors.username}</div>
 
           {/* <label>
             <span> Email: </span>
