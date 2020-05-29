@@ -16,7 +16,7 @@ export default function SignUp(props) {
             <span>Name: </span>
             <input value={formValues.username} onChange={onInputChange} name="username" type="text" />
           </label>
-          <div className="errors">{errors.name}</div>
+          <div className="error">{errors.name}</div>
 
           {/* <label>
             <span> Email: </span>
@@ -28,7 +28,7 @@ export default function SignUp(props) {
             <span> Password:</span>
             <input value={formValues.password} onChange={onInputChange} name="password" type="text" />
           </label>
-          <div className="errors">{errors.password}</div>
+          <div className="error">{errors.password}</div>
           {SigninError && <h5 className="error"> Network Error: {SigninError}</h5>}
           <button> Sign Up </button>
         </form>

@@ -106,7 +106,8 @@ function App() {
       })
       .catch((err) => {
         localStorage.removeItem('token');
-        dispatch({ type: 'LOGIN_ERROR', payload: err.message });
+        err.message.includes('401');
+        dispatch({ type: 'LOGIN_ERROR', payload: 'invalid username or password' });
       });
   };
 
