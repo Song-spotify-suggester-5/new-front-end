@@ -60,6 +60,7 @@ const Profile = () => {
     axiosWithAuth()
       .delete(`/users/${id}`)
       .then((res) => {
+        dispatch({ type: 'DELETE_ACCOUNT_NOTICE' });
         push('/');
         console.log(res);
       })
@@ -69,30 +70,27 @@ const Profile = () => {
   return (
     <>
       <UserNavBar />
-      <div className="profile-form">
-        <FormContainer className="profile-formBox">
-          <div className="formBox">
-            <div className="needed-for-styling"></div>
-              <h1> Change Password </h1>
-              <form onSubmit={onSubmit}>
-                <label>
-                  Name: <input value={username} name="username" placeholder={username} />
-                </label>
+      <FormContainer className="profile-form">
+        <div className="formBox">
+          <h1> Change Password </h1>
+          <form onSubmit={onSubmit}>
+            <label>
+              Name: <input value={username} name="username" placeholder={username} />
+            </label>
 
-                <label>
-                  <span> Password:</span>
-                  <input value={formValues.password} onChange={onInputChange} name="password" type="text" />
-                </label>
-              </form>
-            
+            <label>
+              <span> Password:</span>
+              <input value={formValues.password} onChange={onInputChange} name="password" type="text" />
+            </label>
 
-            <div >
-              {isLoading ? <DotScale color="#1DB954" /> : <button> Change Password </button>}
-            </div>
-          </div>
-          <button className="delete-profile"onClick={deleteAccount}>Delete Account</button>
-        </FormContainer>
-      </div>
+            {isLoading ? <DotScale color="#1DB954" /> : <button className="change-password"> Change </button>}
+          </form>
+        </div>
+
+        <button className="deleteButton" onClick={deleteAccount}>
+          Delete Account
+        </button>
+      </FormContainer>
     </>
   );
 };

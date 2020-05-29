@@ -32,15 +32,14 @@ const initialFormErrors = {
 };
 
 toast.configure();
-const initialUsers = [];
-
 function App() {
   //redux hooks
   let isLoading = useSelector((state) => state.userReducer.isLoading);
   const dispatch = useDispatch();
   const SigninError = useSelector((state) => state.userReducer.SigninError);
   const LoginError = useSelector((state) => state.userReducer.LoginError);
-
+  const accountDeleted = useSelector((state) => state.userReducer.accountDeleted);
+  console.log(accountDeleted);
   //router hooks
   const { push } = useHistory();
 
@@ -74,12 +73,16 @@ function App() {
       });
   };
 
+  const notify_delete = () => {
+    accountDeleted && toast.error('Account was succesfully deleted!', { position: toast.POSITION.TOP_CENTER });
+  };
+  notify_delete();
+
   const SignupSubmit = (e) => {
     e.preventDefault();
-    console.log(formValues);
     dispatch({ type: 'NETWORK_REQUEST_START' });
 
-    const notify = () => {
+    const notify_success = () => {
       toast.success('Signup was succesful!', { position: toast.POSITION.TOP_CENTER });
     };
 
@@ -88,18 +91,23 @@ function App() {
       .post('https://bw-spotify-songs.herokuapp.com/api/auth/register', formValues)
       .then((res) => {
         console.log(res);
-        notify();
+        notify_success();
         setFormValues({
           username: '',
           password: '',
         });
         dispatch({ type: 'NETWORK_REQUEST_SUCCESS' });
       })
-      .catch((err) =>
+      .catch((err) => {
         err.message.includes('409')
-          ? dispatch({ type: 'SIGNIN_ERROR', payload: 'Username already exists' })
-          : dispatch({ type: 'SIGNIN_ERROR', payload: 'Network Error: ' + err.message })
-      );
+          ? dispatch({ type: 'SIGNIN_ERROR', payload: 'Username alrady exists, try a different one' })
+          : dispatch({ type: 'SIGNIN_ERROR', payload: 'Network Error: ' + err.message });
+
+        setFormValues({
+          username: '',
+          password: '',
+        });
+      });
   };
 
   const LoginSubmit = (e) => {
@@ -123,8 +131,13 @@ function App() {
       .catch((err) => {
         localStorage.removeItem('token');
         err.message.includes('401')
-          ? dispatch({ type: 'LOGIN_ERROR', payload: 'Invalid username or password' })
+          ? dispatch({ type: 'LOGIN_ERROR', payload: 'Invalid username or password, please try again' })
           : dispatch({ type: 'LOGIN_ERROR', payload: err.message });
+
+        setFormValues({
+          username: '',
+          password: '',
+        });
       });
   };
 

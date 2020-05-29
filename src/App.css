@@ -178,6 +178,7 @@ input {
 }
 
 .profile-form {
+  /* border: 2px dotted blue; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -188,12 +189,3 @@ input {
   color: white;
 }
 
-.profile-formBox {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.delete-profile{
-  border: 2px dotted red;
-}

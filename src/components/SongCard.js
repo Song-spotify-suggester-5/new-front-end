@@ -13,9 +13,9 @@ const SongCard = ({ song }) => {
   const [clicked, setClicked] = useState(false);
   const [match, setMatch] = useState(false);
 
-  useEffect(() => {
-    console.log(favorites);
-  }, [favorites]);
+  // useEffect(() => {
+  //   console.log(favorites);
+  // }, [favorites]);
 
   const notify = () => {
     toast.success(`Added ${title} to favorites!`);
@@ -29,7 +29,7 @@ const SongCard = ({ song }) => {
       axiosWithAuth()
         .post('/songs', song)
         .then((res) => {
-          console.log('posted to favorites', res);
+          // console.log('posted to favorites', res);
 
           notify();
           setClicked(true);
