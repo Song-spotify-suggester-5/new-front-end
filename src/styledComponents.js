@@ -7,7 +7,6 @@ const FormContainer = styled.div`
   color: #121212;
   font-weight: bold;
 
-
   /* * {
     border: 1px solid white;
   } */
@@ -49,6 +48,25 @@ const FormContainer = styled.div`
 
     :hover {
       border: 3px solid #1db954;
+      color: white;
+      filter: brightness(110%);
+    }
+  }
+
+  .deleteButton {
+    /* border: 2px solid #121212; */
+    border-radius: 20px;
+    margin-left: 45%;
+    width: 150px;
+    height: 40px;
+    text-align: center;
+    font-size: 1.1em;
+    font-weight: bold;
+    background-color: firebrick;
+    color: white;
+
+    :hover {
+      border: 3px solid firebrick;
       color: white;
       filter: brightness(110%);
     }
