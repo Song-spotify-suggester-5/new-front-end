@@ -16,6 +16,7 @@ export default function UserNavBar() {
           </Link>
           <Link to="/favorites">Favorites</Link>
           <Link to="/songs">Search</Link>
+          <Link to="/profile">Profile</Link>
         </div>
       </header>
     </UserNavBarStyles>

@@ -1,7 +1,7 @@
 const userState = {
   user: {
+    id: '',
     username: '',
-    password: '',
   },
   SigninError: '',
   LoginError: '',
@@ -25,6 +25,16 @@ const userReducer = (state = userState, action) => {
       return {
         ...state,
         LoginError: action.payload,
+      };
+    case 'SAVE_ID':
+      return {
+        ...state,
+        user: { ...state.user, id: action.payload },
+      };
+    case 'SAVE_USERNAME':
+      return {
+        ...state,
+        user: { ...state.user, username: action.payload },
       };
     default:
       return state;

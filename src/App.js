@@ -13,6 +13,7 @@ import UserNavBar from './components/UserNavBar';
 import SearchBar from './components/SearchBar';
 import Favorites from './components/Favorites';
 import { useSelector, useDispatch } from 'react-redux';
+import Profile from './components/Profile';
 
 const initialFormValues = {
   username: '',
@@ -73,6 +74,11 @@ function App() {
       .post('https://bw-spotify-songs.herokuapp.com/api/auth/register', formValues)
       .then((res) => {
         console.log(res);
+
+        setFormValues({
+          username: '',
+          password: '',
+        });
       })
       .catch((err) => dispatch({ type: 'SIGNIN_ERROR', payload: err.message }));
   };
@@ -82,16 +88,20 @@ function App() {
     console.log(formValues);
     dispatch({ type: 'NETWORK_REQUEST_START' });
     axiosWithAuth()
-      .post('https://bw-spotify-songs.herokuapp.com/api/auth/login', formValues)
+      .post('/auth/login', formValues)
       .then((res) => {
-        console.log(res);
+        console.log(res.data.id);
+        console.log(res.data.username);
         localStorage.setItem('token', res.data.token);
-        push('/songs');
-
+        localStorage.setItem('id', res.data.id);
+        localStorage.setItem('username', res.data.username);
+      
         setFormValues({
           username: '',
           password: '',
         });
+
+        push('/songs');
       })
       .catch((err) => {
         localStorage.removeItem('token');
@@ -101,6 +111,11 @@ function App() {
 
   return (
     <div>
+      <Route path="/profile">
+        <UserNavBar />
+        <Profile />
+      </Route>
+
       <Route path="/songs">
         <UserNavBar />
         <SearchBar />

@@ -176,3 +176,9 @@ input {
 .error {
   color: crimson;
 }
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
