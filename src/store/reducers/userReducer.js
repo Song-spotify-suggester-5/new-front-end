@@ -25,11 +25,13 @@ const userReducer = (state = userState, action) => {
       return {
         ...state,
         SigninError: action.payload,
+        isLoading: false,
       };
     case 'LOGIN_ERROR':
       return {
         ...state,
         LoginError: action.payload,
+        isLoading: false,
       };
     case 'SAVE_ID':
       return {

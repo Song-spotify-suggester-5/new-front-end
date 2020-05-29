@@ -5,7 +5,7 @@ import formSchema from './formSchema';
 import axios from 'axios';
 import axiosWithAuth from './utils/axiosWithAuth';
 import ProtectedRoute from './utils/ProtectedRoute';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -35,16 +35,18 @@ toast.configure();
 const initialUsers = [];
 
 function App() {
+  //redux hooks
   let isLoading = useSelector((state) => state.userReducer.isLoading);
-  // isLoading = true;
-  const [users, setUsers] = useState(initialUsers);
+  const dispatch = useDispatch();
+  const SigninError = useSelector((state) => state.userReducer.SigninError);
+  const LoginError = useSelector((state) => state.userReducer.LoginError);
+
+  //router hooks
+  const { push } = useHistory();
+
   const [formValues, setFormValues] = useState(initialFormValues);
 
   const [formErrors, setFormErrors] = useState(initialFormErrors);
-  const dispatch = useDispatch();
-  const { push } = useHistory();
-  const SigninError = useSelector((state) => state.userReducer.SigninError);
-  const LoginError = useSelector((state) => state.userReducer.LoginError);
 
   const onInputChange = (evt) => {
     const name = evt.target.name;
@@ -70,7 +72,6 @@ function App() {
           [name]: err.errors[0],
         });
       });
-    //change
   };
 
   const SignupSubmit = (e) => {
@@ -103,13 +104,11 @@ function App() {
 
   const LoginSubmit = (e) => {
     e.preventDefault();
-    console.log(formValues);
+
     dispatch({ type: 'NETWORK_REQUEST_START' });
     axiosWithAuth()
       .post('/auth/login', formValues)
       .then((res) => {
-        console.log(res.data.id);
-        console.log(res.data.username);
         localStorage.setItem('token', res.data.token);
         localStorage.setItem('id', res.data.id);
         localStorage.setItem('username', res.data.username);
@@ -118,7 +117,7 @@ function App() {
           username: '',
           password: '',
         });
-
+        dispatch({ type: 'NETWORK_REQUEST_SUCCESS' });
         push('/songs');
       })
       .catch((err) => {
@@ -137,6 +136,10 @@ function App() {
 
       <ProtectedRoute path="/favorites" component={Favorites} />
 
+      <Route
+        path="/about"
+        component={() => (window.location = 'https://reverent-archimedes-5b8a13.netlify.app/about.html')}
+      />
       <Route exact path="/">
         <NavBar />
         <LogIn
