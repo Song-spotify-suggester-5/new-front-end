@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FormContainer } from '../styledComponents';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import { useSelector, useDispatch } from 'react-redux';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { DotScale } from 'styled-loaders-react';
 
@@ -11,22 +11,23 @@ import UserNavBar from '../navbars/UserNavBar';
 
 toast.configure();
 const Profile = () => {
-  const { push } = useHistory();
+  //redux hooks
   const dispatch = useDispatch();
   let isLoading = useSelector((state) => state.userReducer.isLoading);
   const id = useSelector((state) => state.userReducer.user.id);
-  console.log('id:', id);
-  const username = useSelector((state) => state.userReducer.user.username);
-  console.log('username:', username);
 
-  dispatch({ type: 'SAVE_ID', payload: localStorage.getItem('id') });
-  dispatch({ type: 'SAVE_USERNAME', payload: localStorage.getItem('username') });
+  const username = useSelector((state) => state.userReducer.user.username);
+
+  //router hooks
+  const { push } = useHistory();
 
   const [formValues, setFormValues] = useState({
     username: username,
     password: '',
   });
-  console.log(formValues);
+
+  dispatch({ type: 'SAVE_ID', payload: localStorage.getItem('id') });
+  dispatch({ type: 'SAVE_USERNAME', payload: localStorage.getItem('username') });
 
   const notify = () => {
     toast.success('Password has been successfully changed!', { position: toast.POSITION.TOP_CENTER });
@@ -84,8 +85,8 @@ const Profile = () => {
               {isLoading ? <DotScale color="#1DB954" /> : <button> Change Password </button>}
             </form>
           </div>
+          <button onClick={deleteAccount}>Delete Account</button>
         </FormContainer>
-        <button onClick={deleteAccount}>Delete Account</button>
       </div>
     </>
   );

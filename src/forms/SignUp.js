@@ -1,5 +1,3 @@
-//React 1 guy
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FormContainer } from '../styledComponents';
@@ -18,12 +16,6 @@ export default function SignUp(props) {
             <input value={formValues.username} onChange={onInputChange} name="username" type="text" />
           </label>
           <div className="error">{errors.name}</div>
-
-          {/* <label>
-            <span> Email: </span>
-            <input value={formValues.email} onChange={onInputChange} name="email" type="text" />
-          </label>
-          <div className="errors">{errors.email}</div> */}
 
           <label>
             <span> Password:</span>
