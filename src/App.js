@@ -81,7 +81,11 @@ function App() {
           password: '',
         });
       })
-      .catch((err) => dispatch({ type: 'SIGNIN_ERROR', payload: err.message }));
+      .catch((err) =>
+        err.message.includes('409')
+          ? dispatch({ type: 'SIGNIN_ERROR', payload: 'Username already exists' })
+          : dispatch({ type: 'SIGNIN_ERROR', payload: 'Network Error: ' + err.message })
+      );
   };
 
   const LoginSubmit = (e) => {
@@ -106,8 +110,9 @@ function App() {
       })
       .catch((err) => {
         localStorage.removeItem('token');
-        err.message.includes('401');
-        dispatch({ type: 'LOGIN_ERROR', payload: 'invalid username or password' });
+        err.message.includes('401')
+          ? dispatch({ type: 'LOGIN_ERROR', payload: 'Invalid username or password' })
+          : dispatch({ type: 'LOGIN_ERROR', payload: err.message });
       });
   };
 

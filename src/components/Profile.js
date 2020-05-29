@@ -3,6 +3,7 @@ import { FormContainer } from '../styledComponents';
 import { Link, useHistory } from 'react-router-dom';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import { useSelector, useDispatch } from 'react-redux';
+import UserNavBar from './UserNavBar';
 
 const Profile = () => {
   const { push } = useHistory();
@@ -48,26 +49,29 @@ const Profile = () => {
   }
 
   return (
-    <div className="profile-form">
-      <FormContainer>
-        <div className="formBox">
-          <h1> Change Password </h1>
-          <form onSubmit={onSubmit}>
-            <label>
-              Name: <input value={username} name="username" placeholder={username} />
-            </label>
+    <>
+      <UserNavBar />
+      <div className="profile-form">
+        <FormContainer>
+          <div className="formBox">
+            <h1> Change Password </h1>
+            <form onSubmit={onSubmit}>
+              <label>
+                Name: <input value={username} name="username" placeholder={username} />
+              </label>
 
-            <label>
-              <span> Password:</span>
-              <input value={formValues.password} onChange={onInputChange} name="password" type="text" />
-            </label>
+              <label>
+                <span> Password:</span>
+                <input value={formValues.password} onChange={onInputChange} name="password" type="text" />
+              </label>
 
-            <button> Change Password </button>
-          </form>
-        </div>
-      </FormContainer>
-      <button onClick={deleteAccount}>Delete Account</button>
-    </div>
+              <button> Change Password </button>
+            </form>
+          </div>
+        </FormContainer>
+        <button onClick={deleteAccount}>Delete Account</button>
+      </div>
+    </>
   );
 };
 export default Profile;

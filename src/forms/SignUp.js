@@ -29,7 +29,7 @@ export default function SignUp(props) {
             <input value={formValues.password} onChange={onInputChange} name="password" type="text" />
           </label>
           <div className="error">{errors.password}</div>
-          {SigninError && <h5 className="error"> Network Error: {SigninError}</h5>}
+          {SigninError && <h5 className="error">  {SigninError}</h5>}
           <button> Sign Up </button>
         </form>
       </div>
