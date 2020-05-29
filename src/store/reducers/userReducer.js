@@ -59,6 +59,16 @@ const userReducer = (state = userState, action) => {
         ...state,
         accountDeleted: false,
       };
+    case 'CLEAR_LOGIN_ERROR':
+      return {
+        ...state,
+        LoginError: '',
+      };
+    case 'CLEAR_SIGNIN_ERROR':
+      return {
+        ...state,
+        SigninError: '',
+      };
     default:
       return state;
   }

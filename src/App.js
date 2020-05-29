@@ -36,10 +36,8 @@ function App() {
   //redux hooks
   let isLoading = useSelector((state) => state.userReducer.isLoading);
   const dispatch = useDispatch();
-  const SigninError = useSelector((state) => state.userReducer.SigninError);
-  const LoginError = useSelector((state) => state.userReducer.LoginError);
+
   let accountDeleted = useSelector((state) => state.userReducer.accountDeleted);
-  console.log('from useSelector', accountDeleted);
 
   //router hooks
   const { push } = useHistory();
@@ -49,8 +47,6 @@ function App() {
   const [formErrors, setFormErrors] = useState(initialFormErrors);
 
   const notify_delete = () => {
-    console.log('inside notify_delete', accountDeleted);
-
     accountDeleted && toast.error('Account was succesfully deleted!', { position: toast.POSITION.TOP_CENTER });
 
     dispatch({ type: 'DELETE_ACCOUNT_NOTICE_END' });
@@ -83,6 +79,13 @@ function App() {
         });
       });
   };
+
+  function removeLoginError() {
+    dispatch({ type: 'CLEAR_LOGIN_ERROR' });
+  }
+  function removeSigninError() {
+    dispatch({ type: 'CLEAR_SIGNIN_ERROR' });
+  }
 
   const SignupSubmit = (e) => {
     e.preventDefault();
@@ -165,8 +168,8 @@ function App() {
           formValues={formValues}
           onInputChange={onInputChange}
           LoginSubmit={LoginSubmit}
-          LoginError={LoginError}
           isLoading={isLoading}
+          removeLoginError={removeLoginError}
         />
       </Route>
 
@@ -177,8 +180,8 @@ function App() {
           onInputChange={onInputChange}
           errors={formErrors}
           SignupSubmit={SignupSubmit}
-          SigninError={SigninError}
           isLoading={isLoading}
+          removeSigninError={removeSigninError}
         />
       </Route>
     </div>
