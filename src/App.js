@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, useHistory } from 'react-router-dom';
 import * as yup from 'yup';
 import formSchema from './formSchema';
@@ -38,14 +38,24 @@ function App() {
   const dispatch = useDispatch();
   const SigninError = useSelector((state) => state.userReducer.SigninError);
   const LoginError = useSelector((state) => state.userReducer.LoginError);
-  const accountDeleted = useSelector((state) => state.userReducer.accountDeleted);
-  console.log(accountDeleted);
+  let accountDeleted = useSelector((state) => state.userReducer.accountDeleted);
+  console.log('from useSelector', accountDeleted);
+
   //router hooks
   const { push } = useHistory();
 
   const [formValues, setFormValues] = useState(initialFormValues);
 
   const [formErrors, setFormErrors] = useState(initialFormErrors);
+
+  const notify_delete = () => {
+    accountDeleted && toast.error('Account was succesfully deleted!', { position: toast.POSITION.TOP_CENTER });
+    dispatch({ type: 'DELETE_ACCOUNT_NOTICE_END' });
+
+    // accountDeleted = false;
+    console.log('inside notify_delete', accountDeleted);
+  };
+  notify_delete();
 
   const onInputChange = (evt) => {
     const name = evt.target.name;
@@ -72,11 +82,6 @@ function App() {
         });
       });
   };
-
-  const notify_delete = () => {
-    accountDeleted && toast.error('Account was succesfully deleted!', { position: toast.POSITION.TOP_CENTER });
-  };
-  notify_delete();
 
   const SignupSubmit = (e) => {
     e.preventDefault();
