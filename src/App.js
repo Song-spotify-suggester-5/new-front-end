@@ -15,7 +15,7 @@ import Favorites from './components/Favorites';
 import { useSelector, useDispatch } from 'react-redux';
 
 const initialFormValues = {
-  username: '',
+  usernname: '',
   // email: '',
   password: '',
 };
