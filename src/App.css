@@ -126,7 +126,7 @@ input {
 
 /* heart styles */
 .heart {
-  border: 2px dotted grey;
+  /* border: 2px dotted grey; */
 
   padding-left: 40%;
   padding-bottom: 10%;
@@ -175,4 +175,15 @@ input {
 
 .error {
   color: crimson;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.Toastify__toast--success {
+  background-color: #1db954;
+  color: white;
 }

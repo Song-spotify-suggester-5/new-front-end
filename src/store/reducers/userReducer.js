@@ -1,12 +1,12 @@
 const userState = {
   user: {
+    id: '',
     username: '',
-    password: '',
   },
   SigninError: '',
   LoginError: '',
   chosen: false,
-  loading: false,
+  isLoading: false,
 };
 
 const userReducer = (state = userState, action) => {
@@ -14,7 +14,12 @@ const userReducer = (state = userState, action) => {
     case 'NETWORK_REQUEST_START':
       return {
         ...state,
-        loading: true,
+        isLoading: true,
+      };
+    case 'NETWORK_REQUEST_SUCCESS':
+      return {
+        ...state,
+        isLoading: false,
       };
     case 'SIGNIN_ERROR':
       return {
@@ -25,6 +30,16 @@ const userReducer = (state = userState, action) => {
       return {
         ...state,
         LoginError: action.payload,
+      };
+    case 'SAVE_ID':
+      return {
+        ...state,
+        user: { ...state.user, id: action.payload },
+      };
+    case 'SAVE_USERNAME':
+      return {
+        ...state,
+        user: { ...state.user, username: action.payload },
       };
     default:
       return state;

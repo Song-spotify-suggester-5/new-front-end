@@ -11,11 +11,18 @@ export default function UserNavBar() {
           <img src={logo} alt="" />
         </div>
         <div className="header-links">
-          <Link to="/" onClick={() => localStorage.removeItem('token')}>
+          <Link
+            to="/"
+            onClick={() => {
+              localStorage.removeItem('username');
+              localStorage.removeItem('id');
+              localStorage.removeItem('token');
+            }}>
             Log Out
           </Link>
           <Link to="/favorites">Favorites</Link>
           <Link to="/songs">Search</Link>
+          <Link to="/profile">Profile</Link>
         </div>
       </header>
     </UserNavBarStyles>

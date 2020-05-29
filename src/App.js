@@ -4,15 +4,20 @@ import * as yup from 'yup';
 import formSchema from './formSchema';
 import axios from 'axios';
 import axiosWithAuth from './utils/axiosWithAuth';
+import ProtectedRoute from './utils/ProtectedRoute';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import { useSelector, useDispatch } from 'react-redux';
+
 // import components
 import './App.css';
 import LogIn from './forms/Login.js';
 import SignUp from './forms/SignUp';
-import NavBar from './components/NavBar';
-import UserNavBar from './components/UserNavBar';
+import NavBar from './navbars/NavBar';
 import SearchBar from './components/SearchBar';
 import Favorites from './components/Favorites';
-import { useSelector, useDispatch } from 'react-redux';
+import Profile from './components/Profile';
 
 const initialFormValues = {
   usernname: '',
@@ -26,9 +31,12 @@ const initialFormErrors = {
   password: '',
 };
 
+toast.configure();
 const initialUsers = [];
 
 function App() {
+  let isLoading = useSelector((state) => state.userReducer.isLoading);
+  // isLoading = true;
   const [users, setUsers] = useState(initialUsers);
   const [formValues, setFormValues] = useState(initialFormValues);
 
@@ -69,12 +77,28 @@ function App() {
     e.preventDefault();
     console.log(formValues);
     dispatch({ type: 'NETWORK_REQUEST_START' });
+
+    const notify = () => {
+      toast.success('Signup was succesful!', { position: toast.POSITION.TOP_CENTER });
+    };
+
+    dispatch({ type: 'NETWORK_REQUEST_START' });
     axios
       .post('https://bw-spotify-songs.herokuapp.com/api/auth/register', formValues)
       .then((res) => {
         console.log(res);
+        notify();
+        setFormValues({
+          username: '',
+          password: '',
+        });
+        dispatch({ type: 'NETWORK_REQUEST_SUCCESS' });
       })
-      .catch((err) => dispatch({ type: 'SIGNIN_ERROR', payload: err.message }));
+      .catch((err) =>
+        err.message.includes('409')
+          ? dispatch({ type: 'SIGNIN_ERROR', payload: 'Username already exists' })
+          : dispatch({ type: 'SIGNIN_ERROR', payload: 'Network Error: ' + err.message })
+      );
   };
 
   const LoginSubmit = (e) => {
@@ -82,34 +106,36 @@ function App() {
     console.log(formValues);
     dispatch({ type: 'NETWORK_REQUEST_START' });
     axiosWithAuth()
-      .post('https://bw-spotify-songs.herokuapp.com/api/auth/login', formValues)
+      .post('/auth/login', formValues)
       .then((res) => {
-        console.log(res);
+        console.log(res.data.id);
+        console.log(res.data.username);
         localStorage.setItem('token', res.data.token);
-        push('/songs');
+        localStorage.setItem('id', res.data.id);
+        localStorage.setItem('username', res.data.username);
 
         setFormValues({
           username: '',
           password: '',
         });
+
+        push('/songs');
       })
       .catch((err) => {
         localStorage.removeItem('token');
-        dispatch({ type: 'LOGIN_ERROR', payload: err.message });
+        err.message.includes('401')
+          ? dispatch({ type: 'LOGIN_ERROR', payload: 'Invalid username or password' })
+          : dispatch({ type: 'LOGIN_ERROR', payload: err.message });
       });
   };
 
   return (
     <div>
-      <Route path="/songs">
-        <UserNavBar />
-        <SearchBar />
-      </Route>
+      <ProtectedRoute path="/profile" component={Profile} />
 
-      <Route path="/favorites">
-        <UserNavBar />
-        <Favorites />
-      </Route>
+      <ProtectedRoute path="/songs" component={SearchBar} />
+
+      <ProtectedRoute path="/favorites" component={Favorites} />
 
       <Route exact path="/">
         <NavBar />
@@ -118,6 +144,7 @@ function App() {
           onInputChange={onInputChange}
           LoginSubmit={LoginSubmit}
           LoginError={LoginError}
+          isLoading={isLoading}
         />
       </Route>
 
@@ -129,6 +156,7 @@ function App() {
           errors={formErrors}
           SignupSubmit={SignupSubmit}
           SigninError={SigninError}
+          isLoading={isLoading}
         />
       </Route>
     </div>
