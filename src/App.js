@@ -5,15 +5,18 @@ import formSchema from './formSchema';
 import axios from 'axios';
 import axiosWithAuth from './utils/axiosWithAuth';
 import ProtectedRoute from './utils/ProtectedRoute';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import { useSelector, useDispatch } from 'react-redux';
+
 // import components
 import './App.css';
 import LogIn from './forms/Login.js';
 import SignUp from './forms/SignUp';
 import NavBar from './components/NavBar';
-import UserNavBar from './components/UserNavBar';
 import SearchBar from './components/SearchBar';
 import Favorites from './components/Favorites';
-import { useSelector, useDispatch } from 'react-redux';
 import Profile from './components/Profile';
 
 const initialFormValues = {
@@ -28,9 +31,12 @@ const initialFormErrors = {
   password: '',
 };
 
+toast.configure();
 const initialUsers = [];
 
 function App() {
+  let isLoading = useSelector((state) => state.userReducer.isLoading);
+  // isLoading = true;
   const [users, setUsers] = useState(initialUsers);
   const [formValues, setFormValues] = useState(initialFormValues);
 
@@ -71,11 +77,16 @@ function App() {
     e.preventDefault();
     console.log(formValues);
     dispatch({ type: 'NETWORK_REQUEST_START' });
+
+    const notify = () => {
+      toast.success('Signup was succesful!', { position: toast.POSITION.TOP_CENTER });
+    };
+
     axios
       .post('https://bw-spotify-songs.herokuapp.com/api/auth/register', formValues)
       .then((res) => {
         console.log(res);
-
+        notify();
         setFormValues({
           username: '',
           password: '',
@@ -142,6 +153,7 @@ function App() {
           errors={formErrors}
           SignupSubmit={SignupSubmit}
           SigninError={SigninError}
+          isLoading={isLoading}
         />
       </Route>
     </div>

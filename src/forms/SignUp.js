@@ -3,9 +3,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FormContainer } from '../styledComponents';
+import { DotScale } from 'styled-loaders-react';
 
 export default function SignUp(props) {
-  const { formValues, onInputChange, errors, SignupSubmit, SigninError } = props;
+  const { formValues, onInputChange, errors, SignupSubmit, SigninError, isLoading } = props;
 
   return (
     <FormContainer>
@@ -29,8 +30,8 @@ export default function SignUp(props) {
             <input value={formValues.password} onChange={onInputChange} name="password" type="text" />
           </label>
           <div className="error">{errors.password}</div>
-          {SigninError && <h5 className="error">  {SigninError}</h5>}
-          <button> Sign Up </button>
+          {SigninError && <h5 className="error"> {SigninError}</h5>}
+          {isLoading ? <DotScale color="#1DB954" /> : <button> Sign Up </button>}
         </form>
       </div>
 

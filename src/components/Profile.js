@@ -4,7 +4,10 @@ import { Link, useHistory } from 'react-router-dom';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import { useSelector, useDispatch } from 'react-redux';
 import UserNavBar from './UserNavBar';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
+toast.configure();
 const Profile = () => {
   const { push } = useHistory();
   const dispatch = useDispatch();
@@ -21,6 +24,11 @@ const Profile = () => {
     password: '',
   });
   console.log(formValues);
+
+  const notify = () => {
+    toast.success('Password has been successfully changed!', { position: toast.POSITION.TOP_CENTER });
+  };
+
   function onInputChange(e) {
     setFormValues({ username: username, password: e.target.value });
   }
@@ -29,7 +37,10 @@ const Profile = () => {
     e.preventDefault();
     axiosWithAuth()
       .put(`/users/${id}`, formValues)
-      .then((res) => console.log(res))
+      .then((res) => {
+        console.log(res);
+        notify();
+      })
       .catch((err) => console.error(err));
 
     setFormValues({
